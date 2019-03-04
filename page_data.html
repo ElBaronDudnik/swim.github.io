@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Swimming pool manager</title>
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://img.icons8.com/color/48/000000/sea-waves.png">
+    <link rel="stylesheet" href="main.css">
+    
+</head>
+
+<body>
+    <main>
+        <section>
+            <h2>Hello, I's your data:</h2>
+            <h3 id="channel_name"></h3></br>
+            <h3 id="channel_description"></h3>
+            <!--https://api.thingspeak.com/channels/555785/feeds/last-->
+            <table id="info">
+                
+            </table>
+            <iframe src="https://api.thingspeak.com/channels/407507/charts/2" frameborder="0"></iframe>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $.get(
+                "https://api.thingspeak.com/channels/407507/feeds.json?results=1",
+                function(data){
+                    console.log(data)
+                    var obj = jQuery.parseJSON(JSON.stringify(data));
+                    let channel_name = `<h3>${obj.channel.name}</h3>`;
+                    let channel_description = `<h3>${obj.channel.description}</h3>`;
+                    $('#channel_name').html(channel_name);
+                    $('#channel_description').html(channel_description)
+
+                    console.log(obj.feeds[0])
+                    var name = [obj.channel.field1, obj.channel.field2, obj.channel.field3, obj.channel.field4, obj.channel.field5, obj.channel.field6, obj.channel.field7, obj.channel.field8];
+                    var value = [obj.feeds[0].field1, obj.feeds[0].field2, obj.feeds[0].field3, obj.feeds[0].field4, obj.feeds[0].field5, obj.feeds[0].field6, obj.feeds[0].field7, obj.feeds[0].field8];
+                    //console.log(mas);
+                    let out = '<tr><th>Название</th><th>Показатель</th></tr>';
+                    name.forEach((item, i) => {
+                        out += `<tr><td>${item}</td><td>${value[i]}</td></tr>`;
+                    })
+                    $('#info').html(out);
+                    }
+                )
+        })
+
+    </script>
+    
+</body>
+</html>
