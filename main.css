@@ -189,9 +189,8 @@ main{
   width: 100%;
   background: linear-gradient(45deg, rgb(106, 120, 209), rgb(0, 164, 189));
   font-family: Helvetica; 
-  text-align: center;
 }
-form{
+.center{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -224,6 +223,7 @@ input{
   transition: 1s ease;
   margin: 0 auto;
   text-decoration: none;
+  text-align: center;
 }
 .button:hover{
   background: rgb(0, 164, 189, 0.8);
@@ -231,9 +231,10 @@ input{
 
 section{
   width: 80%;
-  max-width: 960px;
+  max-width: 800px;
   min-width: 576px;
   margin: 0 auto;
+  padding: 40px 60px;
   background: #fff;
   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
@@ -243,19 +244,53 @@ section>h2{
 }
 
 table{
-  border: 2px solid grey;
   border-collapse: collapse;
   margin: 20px auto;
 }
 td, th{
-  border: 2px solid grey;
   padding: 10px;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+th{
+  border-bottom: 2px solid #539bf0;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+}
+td{
+  //background:  linear-gradient(95deg, rgb(106, 120, 209), rgb(0, 164, 189));
 }
 iframe{
-  width: 50%;
+  width: 100%;
   height: 300px;
 }
-h3{
-  display: inline-block;
+h3,h2{
   margin: 10px;
+}
+
+aside ul{
+  padding-left: 0;
+}
+aside li{
+  background: #fff;
+  list-style-type: none;
+  color: black;
+  padding: 10px 20px;
+  width: 50%;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.page_data{
+  display: flex;
+}
+.container:first-child{
+  flex: 2;
+
+}
+.container:last-child{
+  flex: 1;
+}
+img{
+  margin-left: 10px;
 }
